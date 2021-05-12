@@ -1,4 +1,4 @@
-package Pong;
+package Pong.essentials;
 
 import java.awt.*;
 
