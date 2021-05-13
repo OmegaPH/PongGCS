@@ -1,5 +1,6 @@
 package Pong.essentials;
 
+
 import java.applet.Applet;
 import java.awt.*;
 
@@ -38,10 +39,15 @@ public class Score extends Applet {
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.ORANGE);
+        if (Main.State == Main.STATE.SINGLE) {
+            g.setColor(Color.WHITE);
+        } else {
+            g.setColor(Color.ORANGE);
+        }
         g.setFont(fnt0);
         g.drawString(p1S, 195, 270);
         g.drawString(p2S, 475, 270);
     }
-
 }
+
+

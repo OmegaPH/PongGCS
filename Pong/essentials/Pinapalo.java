@@ -1,11 +1,7 @@
 package Pong.essentials;
-
-import Pong.essentials.Main;
-import Pong.essentials.Pamalo;
-
 import java.awt.*;
 
-import static Pong.essentials.Main.State;
+
 import static Pong.essentials.Main.playerMove;
 
 public class Pinapalo {
@@ -18,7 +14,7 @@ public class Pinapalo {
         yVelocity = 3;
     }
 
-    public void pinaloBa (Pamalo p1, Pamalo p2) { //check if ball hits a paddle
+    public void playerCheck (Pamalo p1, Pamalo p2) { //checker for 2 player
         if (x <= 50) { // Width of Paddle + Radius of ball = 50
             if (y >= p1.getY() && y <= p1.getY()+79) { // Basing on the legnth of the paddle
                 xVelocity = -xVelocity;
@@ -26,6 +22,19 @@ public class Pinapalo {
         }
         else if (x >= 650){
             if (y >= p2.getY() && y <= p2.getY()+79) {
+                xVelocity = -xVelocity;
+            }
+
+        }
+    }
+    public void AIcheck (Pamalo p1, Bot AI) { //checker for single player
+        if (x <= 50) { // Width of Paddle + Radius of ball = 50
+            if (y >= p1.getY() && y <= p1.getY()+79) { // Basing on the legnth of the paddle
+                xVelocity = -xVelocity;
+            }
+        }
+        else if (x >= 650){
+            if (y >= AI.getY() && y <= AI.getY()+79) {
                 xVelocity = -xVelocity;
             }
 
@@ -40,7 +49,7 @@ public class Pinapalo {
     }
 
     public void move() {
-        if (Main.State == Main.STATE.PLAYING) {
+        if (Main.State == Main.STATE.PLAYING || Main.State == Main.STATE.SINGLE) {
             if (playerMove == true) { //para habang di gumagalaw di gagalaw yung bola
                 x += xVelocity;
                 y += yVelocity;
