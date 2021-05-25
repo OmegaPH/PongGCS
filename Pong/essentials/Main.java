@@ -1,5 +1,7 @@
 package Pong.essentials;
 
+import Pong.essentials.numbers.Score;
+import Pong.essentials.numbers.TimerClock;
 import Pong.listeners.MouseInputs;
 import Pong.screens.Menu;
 import Pong.screens.Mode;
@@ -24,12 +26,14 @@ public class Main extends Applet implements Runnable, KeyListener {
         Namamalo p1;
         Namamalo p2;
         Pinapalo b1 = new Pinapalo();
+        TimerClock time;
         public static boolean playerMove = false;
         public enum STATE {
             MENU,
             MODE,
             SINGLE,
-            PLAYING
+            SINGLEGO,
+            PLAYING,
         }
         ;
         public static STATE State = STATE.MENU; //tells the program na nasa menu when its first started
@@ -55,6 +59,7 @@ public class Main extends Applet implements Runnable, KeyListener {
     }
 
         public void init () {
+            time = new TimerClock();
             AI = new Bot(2, b1);
             score = new Score();
             p1 = new Namamalo(1);
@@ -98,10 +103,13 @@ public class Main extends Applet implements Runnable, KeyListener {
             } else if (State == STATE.SINGLE) {
                 g.setColor(Color.pink);
                 g.fillRect(0, 0, WIDTH, HEIGHT);
+                time.draw(g);
                 p1.draw(g);
                 b1.draw(g);
                 AI.draw(g);
-                score.draw(g);
+            } else if (State == STATE.SINGLEGO) {
+                g.setColor(Color.pink);
+                g.fillRect(0, 0, WIDTH, HEIGHT);
             }
         }
 
@@ -131,8 +139,12 @@ public class Main extends Applet implements Runnable, KeyListener {
 
                 if (Main.State == STATE.SINGLE) {
                     b1.AIcheck(p1, AI); //check if  pinalo ba si (___, ___) ?
+                    time.startTimer();
+                    time.isGameOver();
                 } else if (Main.State == STATE.PLAYING) {
                     b1.playerCheck(p1, p2);
+                } else if (Main.State == STATE.SINGLEGO) {
+
                 }
 
                 repaint();

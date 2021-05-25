@@ -1,10 +1,10 @@
-package Pong.essentials;
+package Pong.essentials.numbers;
 
+
+import Pong.essentials.Pinapalo;
 
 import java.applet.Applet;
 import java.awt.*;
-
-import static Pong.essentials.Main.playerMove;
 
 public class Score extends Applet {
     Pinapalo b1 = new Pinapalo();
@@ -19,9 +19,6 @@ public class Score extends Applet {
         if (x >= 678 && x <= 680) {
             //player 1 scores
             p1Score++;
-            playerMove = false;
-            b1.x = 350;
-            b1.y = 250;
         }
         return p1S = String.valueOf(p1Score);
     }
@@ -31,19 +28,14 @@ public class Score extends Applet {
         if (x >= 15 && x <= 20) {
             //player 2 scores
             p2Score++;
-            playerMove = false;
-            b1.x = 350;
-            b1.y = 250;
         }
         return p2S = String.valueOf(p2Score);
     }
 
     public void draw(Graphics g) {
-        if (Main.State == Main.STATE.SINGLE) {
-            g.setColor(Color.WHITE);
-        } else {
+
             g.setColor(Color.ORANGE);
-        }
+
         g.setFont(fnt0);
         g.drawString(p1S, 195, 270);
         g.drawString(p2S, 475, 270);

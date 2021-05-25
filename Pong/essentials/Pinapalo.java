@@ -1,10 +1,13 @@
 package Pong.essentials;
+import com.sun.org.apache.xml.internal.serializer.NamespaceMappings;
+
 import java.awt.*;
 
 
 import static Pong.essentials.Main.playerMove;
 
 public class Pinapalo {
+    public static boolean outOfBounds = false;
     public static double xVelocity, yVelocity, x, y;
 
     public Pinapalo() {
@@ -12,6 +15,7 @@ public class Pinapalo {
         y = 250;
         xVelocity = 3.5;
         yVelocity = 3;
+
     }
 
     public void playerCheck (Pamalo p1, Pamalo p2) { //checker for 2 player
@@ -53,11 +57,18 @@ public class Pinapalo {
             if (playerMove == true) { //para habang di gumagalaw di gagalaw yung bola
                 x += xVelocity;
                 y += yVelocity;
+
                 if (y < 10) {
                     yVelocity = -yVelocity;
                 }
                 if (y > 490) {
                     yVelocity = -yVelocity;
+                }
+                if (x >= 15 && x <= 20 || x >= 678 && x <= 680) { // Returns the ball to the center
+                    x = 350;
+                    y = 250;
+                    outOfBounds = true;
+                    playerMove = false;
                 }
             }
         }

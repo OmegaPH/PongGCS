@@ -3,6 +3,7 @@ package Pong.essentials;
 import java.awt.*;
 
 public class Namamalo implements Pamalo {
+    Pinapalo b1 = new Pinapalo();
     double y, yVelocity; //y is location nung pamalo then yVelocity is speed niya
     boolean upX, downX; //is it moving up faster or down?
     int player, x; //this determines who is who (player 1 or 2)
