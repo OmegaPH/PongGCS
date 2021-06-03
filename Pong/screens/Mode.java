@@ -17,12 +17,9 @@ public class Mode {
         g.drawString("SELECT YOUR GAME MODE", 85, HEIGHT / 2 - 100);
         g2d.draw(playBtn);
         g2d.draw(quitBtn);
-        g.setColor(Color.ORANGE);
-        g.setFont(fnt1);
-        g.drawString("1 PLAYER", playBtn.x + 25, playBtn.y + 38);
-        g.drawString("2 PLAYER", quitBtn.x + 32, quitBtn.y + 40);
-
-
+        g.setColor(Color.BLACK);
+        g.fillRect(250, 200, 200, 50);
+        g.fillRect(250, 300, 200, 50);
     }
 
 

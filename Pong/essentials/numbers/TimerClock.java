@@ -1,6 +1,7 @@
 package Pong.essentials.numbers;
 
 import Pong.essentials.Main;
+import Pong.essentials.Namamalo;
 import Pong.essentials.Pinapalo;
 
 import javax.swing.*;
@@ -15,15 +16,16 @@ import static Pong.essentials.Pinapalo.outOfBounds;
 
 
 public class TimerClock extends Applet {
-    Pinapalo b1 = new Pinapalo();
     private int elapsedTime = 0;
     private int miliseconds = 0;
     private int seconds = 0;
     private int minutes = 0;
+    final private String zero = "00:00.00";
     private String miliseconds_string = String.format("%02d", miliseconds);
     private String seconds_string = String.format("%02d", seconds);
     private String minutes_string = String.format("%02d", minutes);
-    static String timerOutput = " ";
+    private String timerOutput = " ";
+    static String timerScoreFinal = " ";
     Font fnt0 = new Font("Calibri", Font.BOLD, 50);
 
     Timer timer = new Timer(1, new ActionListener() {
@@ -43,7 +45,7 @@ public class TimerClock extends Applet {
     public void startTimer() {
         if (playerMove == true) {
             timer.start();
-        } else {
+        } else if (!playerMove){
             timer.stop();
             elapsedTime = 0;
             miliseconds = 0;
@@ -57,13 +59,26 @@ public class TimerClock extends Applet {
 
     public void isGameOver() {
         if (outOfBounds) {
+            timerScoreFinal = timerOutput;
             Main.State = Main.STATE.SINGLEGO;
+            outOfBounds = false;
         }
     }
 
     public void draw (Graphics g) {
-        g.setColor(Color.WHITE);
-        g.setFont(fnt0);
-        g.drawString(timerOutput, 257, 350);
+        if (!playerMove) { //ensures that the timer will be at 0 at the start
+            g.setColor(Color.WHITE);
+            g.setFont(fnt0);
+            g.drawString(zero, 257, 350);
+        }
+        else if (playerMove) { //prints the running timer as soon as player moves
+            g.setColor(Color.WHITE);
+            g.setFont(fnt0);
+            g.drawString(timerOutput, 257, 350);
+        }
+    }
+
+    public String getTimerScoreFinal() {
+        return timerScoreFinal;
     }
 }

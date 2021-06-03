@@ -40,6 +40,17 @@ public class MouseInputs implements MouseListener {
                     Main.State = Main.STATE.SINGLE;
                 }
             }
+        } else if (Main.State == Main.STATE.SINGLEGO) {
+            if (mx >= 100 && mx <= 300) { //save score button
+                if (my >= 300 && my <= 350) {
+                    Main.State = Main.STATE.RECORDING1P;
+                }
+            }
+            if (mx >= 400 && mx <= 600) {
+                if (my >= 300 && my <= 350) {
+                    Main.State = Main.STATE.MENU;
+                }
+            }
         }
     }
 

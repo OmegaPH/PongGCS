@@ -2,6 +2,8 @@ package Pong.essentials;
 
 import java.awt.*;
 
+import static Pong.essentials.Pinapalo.outOfBounds;
+
 public class Namamalo implements Pamalo {
     Pinapalo b1 = new Pinapalo();
     double y, yVelocity; //y is location nung pamalo then yVelocity is speed niya
@@ -19,6 +21,9 @@ public class Namamalo implements Pamalo {
             x = 20;
         else
             x = 660;
+        if (outOfBounds) {
+            y = 210;
+        }
     }
 
     public void draw(Graphics g) {
